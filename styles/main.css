@@ -6,6 +6,34 @@ body {
     background-repeat: no-repeat;
 }
 
+.red-font {
+    color: #E53A40;
+}
+
+.red {
+    background-color: #E53A40;
+}
+
+.red-font {
+    color: #E53A40;
+}
+
+.yellow {
+    background-color: #EFDC05;
+}
+
+.yellow-font {
+    color: #EFDC05;
+}
+
+.blue {
+    background-color: #30A9DE;
+}
+
+.blue-font {
+    color: #30A9DE;
+}
+
 .spacer {
     padding: 5px;
 }
@@ -14,7 +42,9 @@ body {
     margin: 0 auto;
     margin-top: 25px;
     height: 95%;
-    width: 640px;
+    width: 90%;
+    max-width: 900px;
+    max-height: 1700px;
     background-color: #E6E6E6;
 }
 
@@ -22,75 +52,105 @@ body {
     float: right;
     margin: 5px 0;
 }
-    .settings i {
-        font-size: 2em;
-    }
+
+.settings i {
+    font-size: 3.5em;
+}
 
 .animal_window {
     margin: 0 auto;
-    width: 600px;
-    height: 300px;
+    width: 95%;
+    max-width: 850px;
+    height: 530px;
     text-align: center;
+    overflow: none;
 }
 
-    .animal_window img {
-        height: 300px;
-    }
+.primary {
+    float: left;
+    width: 90%;
+    height: 500px;
+    margin: -2em 2em;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.name {
+    background-color: #00870D;
+    padding: 0.5em 1em;
+    float: left;
+    font-size: 2em;
+}
 
 .animal_menu {
     margin: 0 auto;
-    width: 600px;
-    height: 100px;
-    background-color: #D9D9D9;
+    width: 90%;
+    padding: 1em 0;
+    border-top: solid 1px #929292;
+    border-bottom: solid 1px #929292;
+}
+
+.animal_menu table {
+    width: 100%;
 }
 
     .animal_menu table {
-        width: 100%;
+        font-size: 3.5em;
     }
 
-/* ICON FONTS */
-@font-face {
-    font-family: 'utility';
-    src: url('/font/utility.eot?7989985');
-    src: url('/font/utility.eot?7989985#iefix') format('embedded-opentype'),
-       url('/font/utility.woff?7989985') format('woff'),
-       url('/font/utility.ttf?7989985') format('truetype'),
-       url('/font/utility.svg?7989985#utility') format('svg');
-    font-weight: normal;
-    font-style: normal;
+    .animal_menu th {
+        text-align: left;
+        padding-right: 0.25em;
+    }
+
+    .animal_menu td {
+        width: 30%;
+    }
+
+.bar {
+    width: 100%;
+    background-color: #C9C9C9;
 }
 
-.demo-icon {
-  font-family: "utility";
-  font-style: normal;
-  font-weight: normal;
-  speak: none;
- 
-  display: inline-block;
-  text-decoration: inherit;
-  width: 1em;
-  margin-right: .2em;
-  text-align: center;
-  /* opacity: .8; */
- 
-  /* For safety - reset parent styles, that can break glyph codes*/
-  font-variant: normal;
-  text-transform: none;
- 
-  /* fix buttons height, for twitter bootstrap */
-  line-height: 1em;
- 
-  /* Animation center compensation - margins should be symmetric */
-  /* remove if not needed */
-  margin-left: .2em;
- 
-  /* You can be more comfortable with increased icons size */
-  /* font-size: 120%; */
- 
-  /* Font smoothing. That was taken from TWBS */
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
- 
-  /* Uncomment for 3D effect */
-  /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+.fill {
+    width: 10%;
+    float: left;
+    border-left: solid 2px #C9C9C9;
 }
+
+.tiles {
+    margin: 0 auto;
+    padding-left: 2em;
+    width: 90%;
+    height: 800px;
+}
+
+    .tiles div {
+        width: 45%;
+        height: 45%;
+        float: left;
+        margin: 5px;
+        background-size: 75%;
+        background-repeat: no-repeat;
+        background-position: center center;
+    }
+
+    .shop {
+        background-image: url('/media/general/shop.png');
+        background-color: #C0307B;
+    }
+
+    .contest {
+        background-image: url('/media/general/contest.png');
+        background-color: #C0307B;
+    }
+
+    .family {
+        background-image: url('/media/general/family.png');
+        background-color: #C0307B;
+    }
+
+    .park {
+        background-image: url('/media/general/park.png');
+        background-color: #C0307B;
+    }

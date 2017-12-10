@@ -88,13 +88,12 @@ def demo(limit):
 
     print '{} x {}: '.format(mother_name, father_name)
     x = 0
-    while x < 3:
+    while x < limit:
         child = breed(mother, father)
         child_name = generate(child)
         print ' > {}'.format(child_name)
-        x = x +1
-
-
+        x = x + 1
 
 if __name__ == '__main__':
     demo(5)
+
