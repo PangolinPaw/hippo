@@ -1,8 +1,6 @@
 <html>
     <head>
-        <title>H</title>
-        <link rel="stylesheet" href="styles/main.css">
-        <script src="https://use.fontawesome.com/af584466b2.js"></script>
+        <?php include 'includes/head.php'; ?>
     </head>
     <body>
         <?php
@@ -21,11 +19,11 @@
             </div>
             <div class="spacer"></div>
             <div class="animal_window">
-                <div class="name">
-                    Hippo name
-                </div>
                 <!-- Animal -->
                 <div class="primary" style="background-image: url(/media/animal/0100010100.png)">
+                </div>
+                <div class="name">
+                    Hippo name
                 </div>
             </div>
             <div class="spacer"></div>
