@@ -1,26 +1,58 @@
+<?php
+    include 'includes/database.php';
+    
+    function log_out() {
+        setcookie("hippo_session", "", time()-3600, "/");
+        unset($_COOKIE["hippo_session"]);
+        header('Location: /hippo/login.php');
+    }
+
+    // Redirect to homepage if not logged in or if password in cookie is incorrect
+    if(isset($_COOKIE["hippo_session"])) {
+        $user_data = explode("|", $_COOKIE["hippo_session"]);
+        $user = $user_data[0];
+        $password = $user_data[1];
+        $saved_password = $db->query('SELECT PASSWORD FROM users WHERE USERNAME="' . $user . '"');
+        $saved_password = $saved_password->fetchArray()[0];
+        if ( $saved_password != $password ) {
+            setcookie("hippo_session", "", time()-3600, "/");
+            unset($_COOKIE["hippo_session"]);
+            header('Location: /hippo/login.php');
+        }
+    } else {
+        header('Location: /hippo/login.php');
+    }
+
+    if ( isset($_POST["log_out"]) ) {
+        log_out();
+    }
+
+?>
 <html>
     <head>
         <?php include 'includes/head.php'; ?>
     </head>
     <body>
         <?php
-            $bg_array = array('background_falls.gif', 'background_forest.gif', 'background_spring.gif', 'background_woods.gif');
+        // Random background
+            $bg_array = array('background_ldn.png', 'background_sf.jpg', 'background_ny.jpg');
             $bg_img = $bg_array[array_rand($bg_array)];
 
             echo '<style>
                     body {
-                        background-image: url("/media/general/' . $bg_img . '");
+                        background-image: url("/hippo/media/general/' . $bg_img . '");
                     }
                 </style>';
         ?>
         <div class="container">
-            <div class="settings">
-                
-            </div>
+            <div class="settings blue_bright" onclick="document.getElementById('log_out').submit()"><i class="fa fa-sign-out" aria-hidden="true"></i></div>
+            <form id="log_out" method="post">
+                <input type="hidden" name="log_out" value="1" />
+            </form>
             <div class="spacer"></div>
             <div class="animal_window">
                 <!-- Animal -->
-                <div class="primary" style="background-image: url(/media/animal/0100010100.png)">
+                <div class="primary" style="background-image: url(/hippo/media/animal/0100010100.png)">
                 </div>
                 <div class="name">
                     Hippo name
@@ -61,10 +93,10 @@
             <div class="spacer"></div>
             <div class="tiles">
                 <!-- Tiles -->
-                <div class="shop"></div>
-                <div class="contest"></div>
-                <div class="family"></div>
-                <div class="park"></div>
+                <a href="shop.php"><div class="shop"></div></a>
+                <a href="contest.php"><div class="contest"></div></a>
+                <a href="family.php"><div class="family"></div></a>
+                <a href="park.php"><div class="park"></div></a>
             </div>
         </div>
     </body>

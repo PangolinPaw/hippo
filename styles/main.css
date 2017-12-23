@@ -2,59 +2,14 @@ body {
     margin: 0;
     padding: 0;
     background-color: #36403a;
-    background-size: cover;
-    background-repeat: no-repeat;
+    background-size: 100%;
+    font-family: Abel;
 }
 
-/*.aligner {
-    display: -webkit-box;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-    height: 75%;
-    align-items: center;
-    justify-content: center;
+a {
+    text-decoration: none;
+    color: #000;
 }
-
-.login-window {
-    display: -webkit-box;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 900px;
-    height: 500px;
-    background-color: #F3F8FF;
-    padding-top: 3em;
-}
-
-.welcome {
-    -webkit-transform: rotate(-10deg); 
-    -moz-transform: rotate(-10deg);  
-    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=-2);
-    position: fixed;
-    font-family: 'Satisfy', cursive;
-    font-size: 3em;
-    background-color: #FFF;
-    box-shadow: 1px 1px 1px #B0B0B0;
-    padding: 0.2em 0.5em;
-    left: 75px;
-    align-self: flex-start;
-}
-
-.sign {
-    height: 225px;
-    width: 700px;
-    line-height: 225px;
-    font-size: 8em;
-    font-family: 'Chewy', cursive;
-    text-align: center;
-    background-color: #84B1ED;
-    align-self: flex-start;
-}*/
 
 .aligner {
     width: 100%;
@@ -93,6 +48,33 @@ body {
     margin: 50px 0;
 }
 
+.login-form {
+	margin: 0 auto;
+	width: 500px
+}
+
+.login-form input {
+	margin: 5px 6px;
+	width: 235px;
+	height: 50px;
+	font-size: 2em;
+	line-height: 50px;
+	padding: 0 0.5em;
+	border: solid 1px #b0b0b0;
+}
+
+.login-button {
+	margin: 0 auto;
+	width: 480px;
+	height: 50px;
+	background-color: #84B1ED;
+	color: #fff;
+	text-align: center;
+	font-size: 2em;
+	font-weight: bold;
+	line-height: 1.5em;
+}
+
 .red-font {
     color: #E53A40;
 }
@@ -117,8 +99,16 @@ body {
     background-color: #30A9DE;
 }
 
+.blue_bright {
+    background-color: #84B1ED;
+}
+
 .blue-font {
     color: #30A9DE;
+}
+
+.green {
+    background-color: #67D5B5;
 }
 
 .spacer {
@@ -128,21 +118,33 @@ body {
 .container {
     margin: 0 auto;
     margin-top: 25px;
-    height: 95%;
     width: 90%;
     max-width: 900px;
-    max-height: 1700px;
+    min-height: 1700px;
     background-color: #F3F8FF;
+    overflow: auto;
 }
 
 .settings {
     float: right;
-    margin: 5px 0;
+    margin: 0.5em;
+    padding: 0.5em;
 }
 
 .settings i {
     font-size: 3.5em;
 }
+
+.banner {
+    width: 100%;
+    padding: 2em 0;
+    font-size: 2.25em;
+}
+
+    .banner h2 {
+        padding: 0 1em;
+        margin: 0;
+    }
 
 .animal_window {
     margin: 0 auto;
@@ -157,16 +159,16 @@ body {
     float: left;
     width: 90%;
     height: 500px;
-    margin: 1em 5em;
+    margin: -3em 0px 0 5em;
     background-size: cover;
     background-repeat: no-repeat;
 }
 
 .name {
-    background-color: #84B1ED;
-    padding: 0.5em 1em;
+    background-color: #A3C1E9;
+    padding: 0.25em 0.75em;
     float: left;
-    font-size: 2em;
+    font-size: 2.25em;
     margin: -2em 0 0 0.7em;
 }
 
@@ -176,6 +178,10 @@ body {
     padding: 1em 0;
     border-top: solid 1px #F3F8FF;
     border-bottom: solid 1px #F3F8FF;
+}
+
+.animal_menu p {
+    font-size: 1.75em;
 }
 
 .animal_menu table {
@@ -203,7 +209,7 @@ body {
 .fill {
     width: 10%;
     float: left;
-    border-left: solid 2px #C9C9C9;
+    border-left: solid 2px #F3F8FF;
 }
 
 .tiles {
@@ -224,21 +230,21 @@ body {
     }
 
     .shop {
-        background-image: url('/media/general/shop.png');
+        background-image: url('/hippo/media/general/shop.png');
         background-color: #84B1ED;
     }
 
     .contest {
-        background-image: url('/media/general/contest.png');
+        background-image: url('/hippo/media/general/contest.png');
         background-color: #C89EC4;
     }
 
     .family {
-        background-image: url('/media/general/family.png');
+        background-image: url('/hippo/media/general/family.png');
         background-color: #EE7785;
     }
 
     .park {
-        background-image: url('/media/general/park.png');
+        background-image: url('/hippo/media/general/park.png');
         background-color: #67D5B5;
     }
