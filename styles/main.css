@@ -172,6 +172,11 @@ a {
     margin: -2em 0 0 0.7em;
 }
 
+    .name span {
+        font-size: 0.75em;
+        font-style: italic;
+    }
+
 .animal_menu {
     margin: 0 auto;
     width: 90%;
@@ -248,3 +253,4 @@ a {
         background-image: url('/hippo/media/general/park.png');
         background-color: #67D5B5;
     }
+

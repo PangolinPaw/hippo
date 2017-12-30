@@ -26,7 +26,14 @@
     if ( isset($_POST["log_out"]) ) {
         log_out();
     }
+    // CONTINUE HERE
+    $primary = $db->query('SELECT population.NAME, genetics.NAME, HEAD_1, BODY_1, EYE_1, TUSK_1, TAIL_1, COAT_1, HAPPY_1, INTELLIGENT_1 FROM genetics INNER JOIN population ON population.GENOTYPE=genetics.GENOTYPE WHERE population.OWNER="' . $user . '" AND STATUS="primary"');
+    $primary = $primary->fetchArray();
 
+    $hippo_name = $primary[0];
+    $genotype_name = $primary[1];
+    $image = sprintf('%02d', $primary[2]) . sprintf('%02d', $primary[3]) . sprintf('%02d', $primary[4]) . sprintf('%02d', $primary[5]) . sprintf('%02d', $primary[6]) . sprintf('%02d', $primary[7]) . '.png';
+    error_log('>>> $image = ' .  $image);
 ?>
 <html>
     <head>
@@ -52,10 +59,10 @@
             <div class="spacer"></div>
             <div class="animal_window">
                 <!-- Animal -->
-                <div class="primary" style="background-image: url(/hippo/media/animal/0100010100.png)">
+                <div class="primary" style="background-image: url(/hippo/media/animal/<?php echo $image; ?>)">
                 </div>
                 <div class="name">
-                    Hippo name
+                    <?php echo $hippo_name . ' <span>(' . $genotype_name . ')</span>'; ?>
                 </div>
             </div>
             <div class="spacer"></div>
@@ -101,3 +108,4 @@
         </div>
     </body>
 </html>
+

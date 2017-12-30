@@ -1,5 +1,6 @@
 <?php
     include 'includes/database.php';
+    $error_message = "";
     // Log in
     if ( isset($_POST['username']) ) {
         $user = $_POST['username'];
@@ -71,3 +72,4 @@
         </div>
     </body>
 </html>
+

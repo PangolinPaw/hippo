@@ -1,8 +1,19 @@
 from PIL import Image
 import time
 import random
+import sqlite3
+
+DB = ''
+C = ''
+DB_FILE = '../data/data.db'
 
 OUTPUT_PATH = '../media/animal/'
+
+def initalise():
+    global DB, C
+    if C == '':
+        DB = sqlite3.connect(DB_FILE)
+        C = DB.cursor()
 
 def generate(genotype):
     # prepare background
@@ -29,11 +40,11 @@ def generate(genotype):
     #output.paste(foreground, (?,?), foreground.convert('RGBA'))
 
     # save output
-    output_name = '{}{:02d}{:02d}{:02d}{:02d}{:02d}.png'.format(OUTPUT_PATH, min(genotype['colour']), min(genotype['coat']), min(genotype['tusk']), min(genotype['eye']), min(genotype['tail']))
+    output_name = '{}{:02d}{:02d}{:02d}{:02d}{:02d}{:02d}.png'.format(OUTPUT_PATH, min(genotype['colour']),  min(genotype['colour']), min(genotype['eye']), min(genotype['tusk']), min(genotype['tail']), min(genotype['coat']))
     output.save(output_name, format='png')
     return output_name
 
-def create_wild():
+def create_wild(starter=False):
     # Probabilities:
       #     colour  eye     tusk    coat    tail    happy   intel
       # 0   ---     ---     50%     ---     ---     ---     ---
@@ -51,6 +62,11 @@ def create_wild():
     happy_list = [0, 0]
     intel_list = [0, 0]
 
+    if starter:
+        colour_list = [1, 1]
+        eye_list = [1, 1]
+        tusk_list = [0, 0]
+
     colour_1 = random.choice(colour_list)
     colour_2 = random.choice(colour_list)
     genotype = {
@@ -65,6 +81,25 @@ def create_wild():
 
     return genotype
 
+def store_genotype(genotype):
+    print 'head\tbody\teye\t\ttusk\ttail\tcoat\thappy\tint.'
+    print '{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}'.format(genotype['colour'], genotype['colour'], genotype['eye'], genotype['tusk'], genotype['tail'], genotype['coat'], genotype['happy'], genotype['intelligence'])
+
+    for key in genotype:
+        genotype[key] = sorted(genotype[key])
+
+    genes = [genotype['colour'][0], genotype['colour'][1], genotype['colour'][0], genotype['colour'][1], genotype['eye'][0], genotype['eye'][1], genotype['tusk'][0], genotype['tusk'][1], genotype['tail'][0], genotype['tail'][1], genotype['coat'][0], genotype['coat'][1], genotype['happy'][0], genotype['happy'][1], genotype['intelligence'][0], genotype['intelligence'][1]]
+    unique_code = ''.join(str(x) for x in genes)
+
+    initalise()
+    try:
+        C.execute('INSERT INTO genetics (HEAD_1, HEAD_2, BODY_1, BODY_2, EYE_1, EYE_2, TUSK_1, TUSK_2, TAIL_1, TAIL_2, COAT_1, COAT_2, HAPPY_1, HAPPY_2, INTELLIGENT_1, INTELLIGENT_2, UNIQUE_CODE) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', (genotype['colour'][0], genotype['colour'][1], genotype['colour'][0], genotype['colour'][1], genotype['eye'][0], genotype['eye'][1], genotype['tusk'][0], genotype['tusk'][1], genotype['tail'][0], genotype['tail'][1], genotype['coat'][0], genotype['coat'][1], genotype['happy'][0], genotype['happy'][1], genotype['intelligence'][0], genotype['intelligence'][1], unique_code))
+    except:
+        print '(Genotype previously encountered)'
+
+    DB.commit()
+
+
 def breed(mother, father):
     # Hereditability determined by size of number. 
     # Lower number = more dominant
@@ -75,14 +110,21 @@ def breed(mother, father):
         from_father = random.choice(father[gene])
         child[gene] = [from_mother, from_father]
         
-        # DEBUG
-        print '{}: {:02d} x {:02d} = {:02d}'.format(gene, from_mother, from_father, min(child[gene]))
-
     return child
+
+def populate(number):
+    x = 0
+    while x < number:
+        hippo = create_wild()
+        image_filename = generate(hippo)
+        store_genotype(hippo)
+        x = x + 1
+
 
 def demo(limit):
     mother = create_wild()
     mother_name = generate(mother)
+    store_genotype(mother)
     father = create_wild()
     father_name = generate(father)
 
@@ -94,6 +136,8 @@ def demo(limit):
         print ' > {}'.format(child_name)
         x = x + 1
 
+
 if __name__ == '__main__':
-    demo(5)
+    # demo(5)
+    populate(1)
 
